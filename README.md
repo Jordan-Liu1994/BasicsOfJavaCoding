@@ -710,3 +710,172 @@ Results :
 PASSED: testCalculator  
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J022_ExtentReportGenerate
+package java_Basics_Junit;
+
+import com.relevantcodes.extentreports.ExtentReports;
+
+public class J022_ExtentReportGenerate {
+
+	public static ExtentReports extent;
+	public static String extentReportPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Report\\ReportResult.html";
+
+	public static ExtentReports createReport() {
+		extent = new ExtentReports(extentReportPath);
+		return extent;
+	}
+}
+
+## J023_Listener
+package java_Basics_Junit;
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+import b_Cucumber_Utility_002.Extent_Report_Generate;
+
+public class J023_Listener implements ITestListener {
+	
+	ExtentReports extent;
+	ExtentTest test;
+
+	@Override
+	public void onStart(ITestContext context) {
+		System.out.println("Start " + context.getName());
+		extent = J022_ExtentReportGenerate.createReport();
+		test = extent.startTest(context.getName());
+	}
+
+	@Override
+	public void onTestSuccess(ITestResult result) {
+		System.out.println("Test " + result.getName() + " Succeed!");
+		test.log(LogStatus.PASS, result.getName() + " is passed!");
+	}
+
+	@Override
+	public void onTestFailure(ITestResult result) {
+		System.out.println("Test " + result.getName() + " Failed!");
+		test.log(LogStatus.FAIL, result.getName() + " is failed!");
+	}
+
+	@Override
+	public void onTestSkipped(ITestResult result) {
+		System.out.println("Test " + result.getName() + " Skipped!");
+		test.log(LogStatus.SKIP, result.getName() + " is skipped!");
+	}
+
+	@Override
+	public void onFinish(ITestContext context) {
+		System.out.println("End " + context.getName());
+		extent.endTest(test);
+		extent.flush();
+	}
+}
+
+### extent-config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+	<configuration>
+		<!-- report theme -->
+		<!-- standard, dark -->
+		<theme>standard</theme>
+
+		<!-- document encoding -->
+		<!-- defaults to UTF-8 -->
+		<encoding>UTF-8</encoding>
+
+		<!-- protocol for script and stylesheets -->
+		<!-- defaults to https -->
+		<protocol>https</protocol>
+
+		<!-- title of the document -->
+		<documentTitle>Simplilearn - Cucumber Framework</documentTitle>
+
+		<!-- report name - displayed at top-nav -->
+		<reportName>Simplilearn - Cucumber Report</reportName>
+
+		<!-- global date format override -->
+		<!-- defaults to yyyy-MM-dd -->
+		<dateFormat>yyyy-MM-dd</dateFormat>
+
+		<!-- global time format override -->
+		<!-- defaults to HH:mm:ss -->
+		<timeFormat>HH:mm:ss</timeFormat>
+
+		<!-- custom javascript -->
+		<scripts>
+			<![CDATA[
+        $(document).ready(function() {
+        
+        });
+      ]]>
+		</scripts>
+
+		<!-- custom styles -->
+		<styles>
+			<![CDATA[
+        
+      ]]>
+		</styles>
+	</configuration>
+</extentreports>
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J024_Screenshot
+package java_Basics_Junit;
+
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+public class J024_Screenshot {
+
+	WebDriver driver;
+
+	public Screenshot(WebDriver driver) {
+		this.driver = driver;
+	}
+	
+	public void takeScreenShot(String fileName) {
+		File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(screenShot,
+					new File("C:\\Users\\Jordan Liu\\eclipse-workspace\\Phase2-Swiggy_App_In_Diff_Env\\Screenshot\\" + fileName + ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J025_ScrollDown
+package java_Basics_Junit;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
+public class J025_ScrollDown {
+
+	WebDriver driver;
+
+	public Scroll_Down(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	public void ScrollingDown() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)", "");
+	}
+}
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
