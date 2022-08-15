@@ -1522,3 +1522,266 @@ Results :
 Try it to find out yourself
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J038_SeleniumTakeScreenshot
+package java_Basics_Selenium;
+
+import java.io.File;  
+import java.io.IOException;  
+import org.apache.commons.io.FileUtils;  
+import org.openqa.selenium.OutputType;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.TakesScreenshot;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+
+public class J038_SeleniumTakeScreenshot {
+
+	public static WebDriver driver;
+	public static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+	public static String screenShotPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Screenshot\\";
+
+	public static void main(String[] args) throws InterruptedException, IOException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Take_ScreenShot actions = new Take_ScreenShot();
+		actions.StartBrowser();
+		actions.takeScreenShot("internet-herokuapp");
+		actions.closeBrowser();
+	}
+
+	public void StartBrowser() throws InterruptedException {
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("https://the-internet.herokuapp.com/");
+		Thread.sleep(1500);
+	}
+
+	public void takeScreenShot(String fileName) throws IOException {
+		File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(screenShot, new File(screenShotPath + fileName + ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(1500);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J039_SeleniumListOf
+package java_Basics_Selenium;
+
+import java.io.IOException;  
+import java.util.List;  
+import java.util.concurrent.TimeUnit;  
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+
+public class J039_SeleniumListOf {
+
+	public static WebDriver driver;
+	public static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	public static void main(String[] args) throws InterruptedException, IOException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("http://demo.guru99.com/test/ajax.html");
+
+		WebElement navigateBar = driver.findElement(By.xpath("//ul[@class='nav navbar-nav']"));
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		List<WebElement> elements = navigateBar.findElements(By.tagName("li"));
+		for (WebElement WebE : elements) {
+			System.out.println(WebE.getText());
+		}
+
+		Thread.sleep(1500);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J040_SeleniumIframe
+package java_Basics_Selenium;
+
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+
+public class J040_SeleniumIframe {
+
+	public static WebDriver driver;
+	public static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("https://the-internet.herokuapp.com/frames");
+		
+		driver.findElement(By.xpath("//a[normalize-space()='iFrame']")).click();
+		WebElement frame = driver.findElement(By.xpath("//iframe[@id='mce_0_ifr']"));
+		driver.switchTo().frame(frame);
+		WebElement content = driver.findElement(By.xpath("//p[normalize-space()='Your content goes here.']"));
+		System.out.println(content.getText());
+		content.clear();
+		content.sendKeys("Hello world!");
+		driver.switchTo().defaultContent();
+
+		Thread.sleep(1500);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J041_SeleniumDropdown
+package java_Basics_Selenium;
+
+import java.io.IOException;  
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+import org.openqa.selenium.support.ui.Select;  
+
+public class J041_SeleniumDropdown {
+
+	public static WebDriver driver;
+	public static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	public static void main(String[] args) throws InterruptedException, IOException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Dropdown actions = new Dropdown();
+		actions.StartBrowser();
+		actions.dropDown();
+		actions.dropDownOptions();
+		actions.closeBrowser();
+	}
+
+	public void StartBrowser() throws InterruptedException {
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("https://the-internet.herokuapp.com/");
+		Thread.sleep(1500);
+	}
+
+	public void dropDown() throws InterruptedException {
+		WebElement dropDownBtn = driver.findElement(By.xpath("//a[normalize-space()='Dropdown']"));
+		dropDownBtn.click();
+	}
+	
+	public void dropDownOptions() throws InterruptedException {
+		WebElement dropDownOptionsBar = driver.findElement(By.id("dropdown"));
+		Select select = new Select(dropDownOptionsBar);
+		System.out.println(select.getFirstSelectedOption());
+		Thread.sleep(1000);
+		select.selectByVisibleText("Option 1");
+		Thread.sleep(1000);
+		select.selectByIndex(2);
+		Thread.sleep(1000);
+	}
+	
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(1500);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J042_SeleniumCheckbox
+package java_Basics_Selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class J042_SeleniumCheckbox {
+
+	public static WebDriver driver;
+	public static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Checkbox actions = new Checkbox();
+		actions.StartBrowser();
+		actions.selectCheckboxes();
+		actions.checkCheckbox();
+		actions.closeBrowser();
+	}
+
+	public void StartBrowser() throws InterruptedException {
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("https://the-internet.herokuapp.com/");
+		Thread.sleep(1500);
+	}
+
+	public void selectCheckboxes() {
+		WebElement checkboxBtn = driver.findElement(By.xpath("//a[normalize-space()='Checkboxes']"));
+		checkboxBtn.click();
+	}
+
+	public void checkCheckbox() throws InterruptedException {
+		WebElement checkbox1 = driver.findElement(By.xpath("(//input[@type='checkbox'])[1]"));
+		Thread.sleep(1000);
+		if (!checkbox1.isSelected()) {
+			checkbox1.click();
+		}
+		
+		WebElement checkbox2 = driver.findElement(By.xpath("(//input[@type='checkbox'])[2]"));
+		Thread.sleep(1000);
+		if (checkbox2.isSelected()) {
+			checkbox2.click();
+		}
+	}
+	
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
