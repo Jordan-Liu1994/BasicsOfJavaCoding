@@ -4,6 +4,7 @@ All the basics of JAVA coding by Simplilearn
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
 **## J001_PrintInConsole**
+
 package java_Basics;
 
 public class J001_PrintInConsole {
