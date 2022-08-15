@@ -160,3 +160,85 @@ Results :
 11. Value strCasting = 100  
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+# J006_AccessModifier
+package java_Basics;
+
+public class J006_AccessModifier {
+
+	//	other package & class can access these variables
+	public int a = 100;
+	public int b = 200;
+
+	//	only accessible to current class
+	private int c = 150;
+	private int d = 250;
+
+	//	only accessible to current package
+	protected int e = 200;
+	protected int f = 300;
+}
+
+package java_Basics;
+
+public class J007_AccessModifier_Access {
+
+	public static void main(String[] args) {
+
+		Java_Modifiers modAccess = new Java_Modifiers();
+		System.out.println("Value = " + modAccess.a);
+
+		int c = modAccess.a * modAccess.b;
+		System.out.println("Public value = " + c);
+
+		System.out.println("Private can only be use in it's own class file");
+
+		int g = modAccess.e * modAccess.f;
+		System.out.println("Protected value = " + g);
+	}
+}
+
+Results :  
+Value = 100  
+Public value = 20000  
+Private can only be use in it's own class file  
+Protected value = 60000  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+package java_Basics_2;
+
+import java_Basics.J006_AccessModifier;
+
+public class J008_AccessModifier_InDifferentPackage {
+
+	public static void main(String[] args) {
+
+		System.out.println("Hello");
+		System.out.println("你好");
+		System.out.println("สวัสดี");
+		System.out.println("halo");
+		System.out.println("xin chào");
+		System.out.println("नमस्ते");
+		
+		J006_AccessModifier modAccess = new J006_AccessModifier();
+		int g = modAccess.a + modAccess.b;
+		System.out.println("Value = " + g);
+		System.out.println("Private can only use in it's own class file");
+		System.out.println("Protected can only use in it's own package file");
+	}
+
+}
+
+Results :  
+Hello  
+你好  
+สวัสดี  
+halo  
+xin chào  
+नमस्ते  
+Value = 300  
+Private can only use in it's own class file  
+Protected can only use in it's own package file  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
