@@ -3,7 +3,7 @@ All the basics of JAVA coding by Simplilearn
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-# J001_PrintInConsole
+## J001_PrintInConsole
 package java_Basics;
 
 public class J001_PrintInConsole {
@@ -25,7 +25,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-# J002_LoopDoWhile
+## J002_LoopDoWhile
 package java_Basics;
 
 public class J002_LoopDoWhile {
@@ -48,7 +48,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-# J003_LoopFor
+## J003_LoopFor
 package java_Basics;
 
 public class J003_LoopFor {
@@ -73,7 +73,7 @@ Do While Loop has finished & stopped
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-# J004_LoopWhile
+## J004_LoopWhile
 package java_Basics;
 
 public class J004_LoopWhile {
@@ -96,7 +96,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-# J005_Typecasting
+## J005_Typecasting
 package java_Basics;
 
 public class J005_Typecasting {
@@ -161,7 +161,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-# J006_AccessModifier
+## J006_AccessModifier
 package java_Basics;
 
 public class J006_AccessModifier {
