@@ -1,9 +1,9 @@
-# BasicsOfJavaCoding
+**# BasicsOfJavaCoding**
 All the basics of JAVA coding by Simplilearn
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-## J001_PrintInConsole
+**## J001_PrintInConsole**
 package java_Basics;
 
 public class J001_PrintInConsole {
@@ -25,7 +25,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-## J002_LoopDoWhile
+**## J002_LoopDoWhile**
 package java_Basics;
 
 public class J002_LoopDoWhile {
@@ -48,7 +48,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-## J003_LoopFor
+**## J003_LoopFor**
 package java_Basics;
 
 public class J003_LoopFor {
@@ -73,7 +73,7 @@ Do While Loop has finished & stopped
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-## J004_LoopWhile
+**## J004_LoopWhile**
 package java_Basics;
 
 public class J004_LoopWhile {
@@ -96,7 +96,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-## J005_Typecasting
+**## J005_Typecasting**
 package java_Basics;
 
 public class J005_Typecasting {
@@ -161,7 +161,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-## J006_AccessModifier
+**## J006_AccessModifier**
 package java_Basics;
 
 public class J006_AccessModifier {
@@ -179,7 +179,7 @@ public class J006_AccessModifier {
 	protected int f = 300;
 }
 
-## J007_AccessModifier_Access
+**## J007_AccessModifier_Access**
 package java_Basics;
 
 public class J007_AccessModifier_Access {
@@ -207,7 +207,7 @@ Protected value = 60000
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-## J008_AccessModifier_InDifferentPackage
+**## J008_AccessModifier_InDifferentPackage**
 package java_Basics_2;
 
 import java_Basics.J006_AccessModifier;
@@ -229,7 +229,6 @@ public class J008_AccessModifier_InDifferentPackage {
 		System.out.println("Private can only use in it's own class file");
 		System.out.println("Protected can only use in it's own package file");
 	}
-
 }
 
 Results :  
@@ -242,5 +241,40 @@ xin chào
 Value = 300  
 Private can only use in it's own class file  
 Protected can only use in it's own package file  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+**## J009_InheritParent**
+package java_Basics;
+
+public class J009_InheritParent {
+
+	static int a = 25;
+	static int b = 50;
+	static String string = "Hello World!";
+
+	public static void printMyName() {
+		System.out.println(string);
+	}
+}
+
+**## J010_InheritChild**
+package java_Basics;
+
+public class J010_InheritChild extends J009_InheritParent {
+
+	public static void main(String[] args) {
+		System.out.println("Value = " + (a * b));
+		printMyName();
+	}
+	
+	public static int additionMethod() {
+		return (a * b) + a;
+	}
+}
+
+Results :  
+Value = 1250  
+Hello World!  
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
