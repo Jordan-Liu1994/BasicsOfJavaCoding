@@ -18,10 +18,12 @@ public class J001_PrintInConsole {
 }
 
 Results :
+{
 -----Hi QC-----
 -----Hello World!-----
 -----Hello Simplilearn!-----
 -----Hello QA/QC Team!-----
+}
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
@@ -41,9 +43,11 @@ public class J002_LoopDoWhile {
 }
 
 Results :
-	1 is not more than 5
-	2 is not more than 5
-	3 is not more than 5
-	4 is not more than 5
-	
+{
+1 is not more than 5
+2 is not more than 5
+3 is not more than 5
+4 is not more than 5
+}
+
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
