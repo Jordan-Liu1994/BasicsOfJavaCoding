@@ -2709,16 +2709,16 @@ public class J060_TestngExtentReportCreation {
 	
 }
 
-	J060_TestngExtentReportCreation_Testng
+> J060_TestngExtentReportCreation_Testng
 
-		<?xml version="1.0" encoding="UTF-8"?>
-		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-		<suite name="Suite">
-			<test thread-count="3" name="Assert">
-				<classes>
-					<class name="java_Basics_Testng.J060_TestngExtentReportCreation"></class>
-				</classes>
-			</test> <!-- Test -->
-		</suite> <!-- Suite -->
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+	<suite name="Suite">
+		<test thread-count="3" name="Assert">
+			<classes>
+				<class name="java_Basics_Testng.J060_TestngExtentReportCreation"></class>
+			</classes>
+		</test> <!-- Test -->
+	</suite> <!-- Suite -->
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
