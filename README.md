@@ -18,10 +18,10 @@ public class J001_PrintInConsole {
 }
 
 Results :
-	-----Hi QC-----
-	-----Hello World!-----
-	-----Hello Simplilearn!-----
-	-----Hello QA/QC Team!-----
+-----Hi QC-----
+-----Hello World!-----
+-----Hello Simplilearn!-----
+-----Hello QA/QC Team!-----
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
