@@ -714,7 +714,7 @@ PASSED: testCalculator
 ## J022_ExtentReportGenerate
 package java_Basics_Junit_Utility;
 
-import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentReports;  
 
 public class J022_ExtentReportGenerate {
 
@@ -730,12 +730,12 @@ public class J022_ExtentReportGenerate {
 ## J023_Listener
 package java_Basics_Junit_Utility;
 
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
+import org.testng.ITestContext;  
+import org.testng.ITestListener;  
+import org.testng.ITestResult;  
+import com.relevantcodes.extentreports.ExtentReports;  
+import com.relevantcodes.extentreports.ExtentTest;  
+import com.relevantcodes.extentreports.LogStatus;  
 
 import b_Cucumber_Utility_002.Extent_Report_Generate;
 
@@ -827,12 +827,12 @@ public class J023_Listener implements ITestListener {
 ## J024_Screenshot
 package java_Basics_Junit_Utility;
 
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import java.io.File;  
+import java.io.IOException;  
+import org.apache.commons.io.FileUtils;  
+import org.openqa.selenium.OutputType;  
+import org.openqa.selenium.TakesScreenshot;  
+import org.openqa.selenium.WebDriver;  
 
 public class J024_Screenshot {
 
@@ -858,8 +858,8 @@ public class J024_Screenshot {
 ## J025_ScrollDown
 package java_Basics_Junit_Utility;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.JavascriptExecutor;  
+import org.openqa.selenium.WebDriver;  
 
 public class J025_ScrollDown {
 
@@ -882,8 +882,8 @@ package java_Basics_Junit;
 
 package a_Junit_001;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;  
+import org.junit.jupiter.api.Test;  
 
 public class J026_Junit_Assertions {
 
@@ -914,8 +914,8 @@ public class J026_Junit_Assertions {
 ## J027_Junit_Assumptions
 package java_Basics_Junit;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;  
+import org.junit.jupiter.api.Test;  
 
 public class J027_Junit_Assumptions {
 
@@ -957,11 +957,11 @@ Repeat
 ## J028_Junit_AtMethods
 package java_Basics_Junit;
 
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.BeforeClass;  
+import org.junit.jupiter.api.AfterAll;  
+import org.junit.jupiter.api.BeforeAll;  
+import org.junit.jupiter.api.BeforeEach;  
+import org.junit.jupiter.api.Test;  
 
 public class J028_Junit_AtMethods {
 
@@ -1004,12 +1004,12 @@ After all
 ## J029_Junit_DynamicTest
 package java_Basics_Junit;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.DynamicTest.*;
-import java.util.Arrays;
-import java.util.Collection;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
+import static org.junit.jupiter.api.Assertions.*;  
+import static org.junit.jupiter.api.DynamicTest.*;  
+import java.util.Arrays;  
+import java.util.Collection;  
+import org.junit.jupiter.api.DynamicTest;  
+import org.junit.jupiter.api.TestFactory;  
 
 public class J029_Junit_DynamicTest {
 
@@ -1029,13 +1029,13 @@ Hello
 ## J030_Junit_IgnoredDisabled
 package java_Basics_Junit;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
-import org.junit.jupiter.api.condition.DisabledOnJre;
-import org.junit.jupiter.api.condition.DisabledOnOs;
-import org.junit.jupiter.api.condition.JRE;
-import org.junit.jupiter.api.condition.OS;
+import org.junit.jupiter.api.Disabled;  
+import org.junit.jupiter.api.Test;  
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;  
+import org.junit.jupiter.api.condition.DisabledOnJre;  
+import org.junit.jupiter.api.condition.DisabledOnOs;  
+import org.junit.jupiter.api.condition.JRE;  
+import org.junit.jupiter.api.condition.OS;  
 
 public class J030_Junit_IgnoredDisabled {
 
@@ -1073,15 +1073,15 @@ c:\test\folder
 ## J031_Junit_ParameterizedTestSource
 package java_Basics_Junit;
 
-import static org.testng.Assert.*;
-import java.lang.annotation.ElementType;
-import java.time.Month;
-import java.util.stream.Stream;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import static org.testng.Assert.*;  
+import java.lang.annotation.ElementType;  
+import java.time.Month;  
+import java.util.stream.Stream;  
+import org.junit.jupiter.params.ParameterizedTest;  
+import org.junit.jupiter.params.provider.CsvSource;  
+import org.junit.jupiter.params.provider.EnumSource;  
+import org.junit.jupiter.params.provider.MethodSource;  
+import org.junit.jupiter.params.provider.ValueSource;  
 
 public class J031_Junit_ParameterizedTestSource {
 
@@ -1171,10 +1171,10 @@ CSV Source = Jordan - SG
 ## J032_Junit_Stream
 package java_Basics_Junit;
 
-import java.util.stream.Stream;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.ArgumentsProvider;
+import java.util.stream.Stream;  
+import org.junit.jupiter.api.extension.ExtensionContext;  
+import org.junit.jupiter.params.provider.Arguments;  
+import org.junit.jupiter.params.provider.ArgumentsProvider;  
 
 public class J032_Junit_Stream implements ArgumentsProvider {
 
@@ -1210,12 +1210,12 @@ Cherry
 ## J034_SeleniumIntro
 package java_Basics_Selenium;
 
-import static org.junit.Assert.assertTrue;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import static org.junit.Assert.assertTrue;  
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
 
 public class J034_SeleniumIntro {
 
@@ -1370,10 +1370,10 @@ Try it to find out yourself
 ## J035_SeleniumStartDriver
 package java_Basics_Selenium;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
 
 public class J035_SeleniumStartDriver {
 
@@ -1410,14 +1410,14 @@ Try it to find out yourself
 ## J036_SeleniumWait
 package java_Basics_Selenium;
 
-import java.io.IOException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import java.io.IOException;  
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+import org.openqa.selenium.support.ui.ExpectedConditions;  
+import org.openqa.selenium.support.ui.WebDriverWait;  
 
 public class J036_SeleniumWait {
 
@@ -1472,14 +1472,14 @@ Try it to find out yourself
 ## J037_SeleniumWindowHandle
 package java_Basics_Selenium;
 
-import java.io.IOException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import java.io.IOException;  
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+import org.openqa.selenium.support.ui.ExpectedConditions;  
+import org.openqa.selenium.support.ui.WebDriverWait;  
 
 public class J037_SeleniumWindowHandle {
 
