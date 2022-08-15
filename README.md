@@ -548,3 +548,131 @@ YK
 35  
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J018_CollectionForLoopExtended
+package java_Basics;
+
+public class J018_CollectionForLoopExtended {
+
+	public static void main(String[] args) {
+
+		List<String> strList = new ArrayList<String>();
+		strList.add("Hello");
+		strList.add("Jordan");
+		strList.add("Fire");
+		strList.add("Many");
+		strList.add("Big");
+		strList.add("Hey");
+		
+		System.out.println(strList);
+				
+		for (String strData : strList) {
+			System.out.println(strData);
+		}
+	}
+}
+
+Results :  
+[Hello, Jordan, Fire, Many, Big, Hey]  
+
+Hello  
+Jordan  
+Fire  
+Many  
+Big  
+Hey  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J019_ClassObject
+package java_Basics;
+
+public class J019_ClassObject {
+
+	int a = 100;
+	int b = 150;
+	static int c = 100;
+	static int d = 150;
+	
+	1.
+	public static void main(String[] args) {
+	
+		J019_ClassObject classObject = new J019_ClassObject();
+		System.out.println("J019_ClassObject = " + (classObject.a + classObject.b));
+		}
+	----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+	
+	2.
+	public static void main(String[] args2) {
+		J019_ClassObject classObject = new J019_ClassObject();
+		classObject.addition();
+		}
+		
+	public void addition() {
+		System.out.println("Java_Class_Object = " + (a + c));
+		}
+	----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+	
+	3.
+	public static void main(String[] args) {
+		J019_ClassObject classObject = new J019_ClassObject();
+		classObject.multiply(10, 10);
+		}
+	
+	public void multiply(int a, int b) {
+		System.out.println("J019_ClassObject = " + (a * b));
+		}
+	----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+	
+	4.
+	public static void main(String[] args) {
+		J019_ClassObject classObject = new J019_ClassObject();
+		classObject.multiply(10, 10, "Passed!");
+		}
+	
+	public void multiply(int a, int b, String strArg) {
+		System.out.println("J019_ClassObject = " + (a * b));
+		System.out.println("Arguement is = " + strArg);
+		}
+	----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+	
+	5.
+	public static void main(String[] args) {
+		J019_ClassObject classObject = new J019_ClassObject();
+		int myInt = classObject.addition(10, 10);
+		System.out.println("J019_ClassObject = " + myInt);
+	}
+	
+	public int addition(int a, int b) {
+		int addition = a + b;
+		return addition;
+		}
+	----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+	
+	6.
+	public static void main(String[] args) {
+		J019_ClassObject classObject = new J019_ClassObject();
+		String myString = classObject.addition("Simplilearn");
+		System.out.println("J019_ClassObject = " + myString);
+	}
+
+	public String addition(String strArg) {
+		return "Hello " + strArg;
+	}
+}
+
+Results :  
+1. 
+
+2. 
+
+3. 
+
+4. J019_ClassObject = 100
+   Arguement is = Passed!
+
+5. J019_ClassObject = 250
+
+6. J019_ClassObject = Hello Simplilearn  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
