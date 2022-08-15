@@ -479,3 +479,72 @@ Jordan
 Ord  
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J017_CollectionArray
+package java_Basics;
+
+public class J017_CollectionArray {
+
+	public static void main(String[] args) {
+		int a[] = { 1, 3, 5, 8, 10, 13, 16, 20 };
+		System.out.println(a[3]);
+
+		a[3] = 70;
+		System.out.println(a[3]);
+
+		System.out.println(a.length);
+
+		String strArray[] = { "Jordan", "Kian", "Ancore", "Wong", "Terence", "Vincent", "Wanhui", "John", "Jimmy", "YK" };
+		System.out.println(strArray[5]);
+
+		for (int b = 0; b < strArray.length; b++) {
+			System.out.println(strArray[b]);
+		}
+
+		int twoD[][] = { { 1, 2, 3 }, { 5, 10, 20 }, { 15, 25, 35 } };
+		
+		System.out.println(twoD[2][1]);
+
+		for (int index = 0; index < twoD.length; index++) {
+			for (int index2 = 0; index2 < twoD[index].length; index2++) {
+				System.out.println(twoD[index][index2]);
+			}
+		}
+	}
+}
+
+Results :  
+8  
+
+70  
+
+8  
+
+Vincent  
+
+Jordan  
+Kian  
+Ancore  
+Wong  
+Terence  
+Vincent  
+Wanhui  
+John  
+Jimmy  
+YK  
+
+25  
+
+1  
+2  
+3  
+
+5  
+10  
+20  
+
+15  
+25  
+35  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
