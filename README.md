@@ -1727,11 +1727,11 @@ Try it to find out yourself
 ## J042_SeleniumCheckbox
 package java_Basics_Selenium;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
 
 public class J042_SeleniumCheckbox {
 
@@ -1783,5 +1783,261 @@ public class J042_SeleniumCheckbox {
 
 Results :  
 Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J043_SeleniumBrowserAction
+package java_Basics_Selenium;
+
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+
+public class J043_SeleniumBrowserAction {
+
+	public static WebDriver driver;
+	public static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Browser_Action actions = new Browser_Action();
+		actions.StartBrowser();
+		actions.closeAnnouncement();
+		actions.clickPromo();
+		actions.backToPage();
+		actions.refreshPage();
+		actions.forwardToPage();
+		actions.closeBrowser();
+	}
+
+	public void StartBrowser() throws InterruptedException {
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("https://the777888.com");
+		Thread.sleep(1500);
+	}
+
+	public void closeAnnouncement() throws InterruptedException {
+		WebElement doNotShowAgainTodayRadioBtn = driver.findElement(By.xpath("(//*[name()='svg'])[1]"));
+		WebElement closeAnnouncementBtn = driver.findElement(By.xpath("(//button[@aria-label='Close'])[1]"));
+		doNotShowAgainTodayRadioBtn.click();
+		closeAnnouncementBtn.click();
+	}
+
+	public void clickPromo() throws InterruptedException {
+		WebElement promoBtn = driver.findElement(By.xpath("//div[contains(text(),'专属优惠')]"));
+		Thread.sleep(1500);
+		promoBtn.click();
+	}
+
+	public void backToPage() throws InterruptedException {
+		Thread.sleep(1500);
+		driver.navigate().back();
+		System.out.println("Page backed");
+	}
+
+	public void forwardToPage() throws InterruptedException {
+		Thread.sleep(1500);
+		driver.navigate().forward();
+		System.out.println("Page forwarded");
+	}
+
+	public void refreshPage() throws InterruptedException {
+		Thread.sleep(1500);
+		driver.navigate().refresh();
+		System.out.println("Page refreshed");
+	}
+
+	public void getCSSValue() throws InterruptedException {
+		Thread.sleep(1500);
+		WebElement colorBox = driver.findElement(By.id("layered_id_attribute_group_14"));
+		System.out.println("Color RGB = " + colorBox.getCssValue("background"));
+		System.out.println("Border = " + colorBox.getCssValue("border"));
+		System.out.println("Height = " + colorBox.getCssValue("height"));
+		System.out.println("Width = " + colorBox.getCssValue("width"));
+		System.out.println("Class = " + colorBox.getAttribute("class"));
+		System.out.println("Style = " + colorBox.getAttribute("style"));
+		System.out.println("Tagname = " + colorBox.getTagName());
+	}
+	
+	public void closeBrowser() {
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J044_SeleniumAlert
+package java_Basics_Selenium;
+
+import java.io.IOException;  
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+
+public class J044_SeleniumAlert {
+
+	public static WebDriver driver;
+	public static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	public static void main(String[] args) throws InterruptedException, IOException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+		
+		driver.findElement(By.xpath("//button[normalize-space()='Click for JS Alert']")).click();
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+		System.out.println(driver.findElement(By.xpath("//p[@id='result']")).getText());
+		
+		driver.findElement(By.xpath("//button[normalize-space()='Click for JS Confirm']")).click();
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+		System.out.println(driver.findElement(By.xpath("//p[@id='result']")).getText());
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//button[normalize-space()='Click for JS Confirm']")).click();
+		Thread.sleep(1000);
+		driver.switchTo().alert().dismiss();
+		System.out.println(driver.findElement(By.xpath("//p[@id='result']")).getText());
+		
+		driver.findElement(By.xpath("//button[normalize-space()='Click for JS Prompt']")).click();
+		Thread.sleep(1000);
+		driver.switchTo().alert().sendKeys("Hello!!!");
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+		System.out.println(driver.findElement(By.xpath("//p[@id='result']")).getText());
+		
+		Thread.sleep(1500);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J045_SeleniumActionBuilder
+package java_Basics_Selenium;
+
+import java.io.IOException;  
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+import org.openqa.selenium.interactions.Action;  
+import org.openqa.selenium.interactions.Actions;  
+
+public class J045_SeleniumActionBuilder {
+
+	public static WebDriver driver;
+	public static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	public static void main(String[] args) throws InterruptedException, IOException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("https://the-internet.herokuapp.com/drag_and_drop");
+		
+		WebElement fromE = driver.findElement(By.id("column-a"));
+		WebElement toE = driver.findElement(By.id("column-b"));
+
+		Actions builder = new Actions(driver);
+		Action act = builder.clickAndHold(fromE).moveToElement(toE).release().build();
+		act.perform();
+		Thread.sleep(3000);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J046_CucumberAccess
+package java_Basics_Junit_Utility;
+
+import org.junit.runner.RunWith;  
+import cucumber.api.CucumberOptions;  
+import cucumber.api.junit.Cucumber;  
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "D:\\Eclipse WorkSpace\\CucumberProject\\src\\test\\resources\\features", 
+glue = {"Test_run" })
+plugin = {"com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:target\\cucumber-reports\\report.html" })
+public class Cucumber_Runner {
+
+	@AfterClass
+	public static void writeExtentReport() {
+		Reporter.loadXMLConfig(new File("D:\\Eclipse WorkSpace\\0001_Maven_Project\\src\\test\\resources\\extent-config.xml"));
+		}
+}
+
+## J047_CucumberFeatureTest
+> Just a sample
+
+	Feature: Test going to a site
+
+  	Scenario: Test going to a site
+   		Given I start my browser
+   		And I go to "https://the777888.com"
+   		Then I see login button
+   		And I click on login button  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J048_ExcelWriter
+package java_Basics_Junit_Utility;
+
+import java.io.FileOutputStream;  
+import java.io.IOException;  
+import org.apache.poi.hssf.usermodel.HSSFRow;  
+import org.apache.poi.hssf.usermodel.HSSFSheet;  
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;  
+
+public class Excel_Writer {
+
+> https://www.javatpoint.com/java-create-excel-file#:~:text=Follow%20the%20steps%20given%20below,we%20have%20written%20in%20CreateExcelFileExample1.
+
+	static String excelPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Excel\\";
+	
+	public static void main(String[] args) throws IOException {
+		HSSFWorkbook workbook = new HSSFWorkbook();
+		HSSFSheet sheet = workbook.createSheet("Test");
+		HSSFRow rowhead = sheet.createRow(0);
+		rowhead.createCell(0).setCellValue("S.No.");  
+		rowhead.createCell(1).setCellValue("Customer Name");  
+		rowhead.createCell(2).setCellValue("Account Number");  
+		rowhead.createCell(3).setCellValue("e-mail");  
+		rowhead.createCell(4).setCellValue("Balance");
+		
+		HSSFRow row = sheet.createRow(1);  
+		row.createCell(0).setCellValue("1");  
+		row.createCell(1).setCellValue("Jordan");  
+		row.createCell(2).setCellValue("22222");  
+		row.createCell(3).setCellValue("me@gmail.com");  
+		row.createCell(4).setCellValue("5000.00"); 
+		
+		FileOutputStream fileOut = new FileOutputStream(excelPath + "Testdata.xlsx");  
+		System.out.println("Excel File has been created successfully.");   
+		workbook.write(fileOut);
+		fileOut.close();
+		workbook.close();  
+	}
+}
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
