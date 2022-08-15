@@ -17,7 +17,7 @@ public class J001_PrintInConsole {
 	}
 }
 
-Results :
+Results :  
 -----Hi QC-----  
 -----Hello World!-----  
 -----Hello Simplilearn!-----  
@@ -40,7 +40,7 @@ public class J002_LoopDoWhile {
 	}
 }
 
-Results :
+Results :  
 1 is not more than 5  
 2 is not more than 5  
 3 is not more than 5  
