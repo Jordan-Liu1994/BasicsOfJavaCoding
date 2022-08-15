@@ -687,7 +687,7 @@ public class J020_Calculator {
 		return c;
 	}
 	
-	>OR
+> OR
 	
 	public int addValue(int a, int b) {
 		return a + b;
