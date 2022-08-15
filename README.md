@@ -328,17 +328,15 @@ public class J012_ExceptionHandling {
 	}
 }
 
-**Results :  
+Results :  
 Statement 2  
 Statement 3  
-Statement 4  
---------------------------------------------------  
+Statement 4    
 There is an error with ARRAY INDEX!  
 java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5 at a_Java_001.Java_Exception_Handling.main(Java_Exception_Handling.java:18)  
-Continue the process!  
---------------------------------------------------  
+Continue the process!    
 Statement 5  
 Statement 6  
-Statement 7  **
+Statement 7  
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
