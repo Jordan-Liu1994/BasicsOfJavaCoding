@@ -609,7 +609,7 @@ public class J019_ClassObject {
 		}
 		
 	public void addition() {
-		System.out.println("Java_Class_Object = " + (a + c));
+		System.out.println("J019_ClassObject = " + (a + c));
 		}
 	----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 	
@@ -662,13 +662,13 @@ public class J019_ClassObject {
 }
 
 Results :  
-1. 
+1. J019_ClassObject = 250  
 
-2. 
+2. J019_ClassObject = 200  
 
-3. 
+3. J019_ClassObject = 100  
 
-4. J019_ClassObject = 100
+4. J019_ClassObject = 100  
    Arguement is = Passed!
 
 5. J019_ClassObject = 250
