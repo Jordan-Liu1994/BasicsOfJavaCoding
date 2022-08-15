@@ -706,17 +706,17 @@ public class J021_Calculator_Access {
 	}
 }
 
-	J020_Calculator_Testng
+> J020_Calculator_Testng
 	
-		<?xml version="1.0" encoding="UTF-8"?>
-		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-		<suite name="Suite">
-			<test thread-count="5" name="Test_Driven_Development">
-				<classes>
-					<class name="java_Basics.J021_Calculator_Access"></class>
-				</classes>
-			</test> <!-- Test -->
-		</suite> <!-- Suite -->
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+	<suite name="Suite">
+		<test thread-count="5" name="Test_Driven_Development">
+			<classes>
+				<class name="java_Basics.J021_Calculator_Access"></class>
+			</classes>
+		</test> <!-- Test -->
+	</suite> <!-- Suite -->
 
 Results :  
 PASSED: testCalculator  
@@ -1374,17 +1374,17 @@ public class J034_SeleniumIntro {
 	}
 }
 
-	J034_SeleniumIntro_Testng
+> J034_SeleniumIntro_Testng
 
-		<?xml version="1.0" encoding="UTF-8"?>
-		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-		<suite name="Suite">
-			<test thread-count="5" name="Selenium">
-				<classes>
-					<class name="e_Selenium_005.Intro_To_Selenium"></class>
-				</classes>
-			</test> <!-- Test -->
-		</suite> <!-- Suite -->
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+	<suite name="Suite">
+		<test thread-count="5" name="Selenium">
+			<classes>
+				<class name="e_Selenium_005.Intro_To_Selenium"></class>
+			</classes>
+		</test> <!-- Test -->
+	</suite> <!-- Suite -->
 
 Results :  
 Try it to find out yourself
@@ -2179,19 +2179,19 @@ public class J051_TestngParameter {
 	}
 }
 
-	J051_TestngParameter_Testng
+> J051_TestngParameter_Testng
 
-		<?xml version="1.0" encoding="UTF-8"?>
-		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-		<suite name="Suite">
-			<parameter name="browser" value="firefox"></parameter>
-			<parameter name="methodlogy" value="Smoke Test"></parameter>
-			<test thread-count="3" name="Java">
-				<classes>
-					<class name="c_TestNG_003.TestNG_Parameter"></class>
-				</classes>
-			</test> <!-- Test -->
-		</suite> <!-- Suite -->
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+	<suite name="Suite">
+		<parameter name="browser" value="firefox"></parameter>
+		<parameter name="methodlogy" value="Smoke Test"></parameter>
+		<test thread-count="3" name="Java">
+			<classes>
+				<class name="c_TestNG_003.TestNG_Parameter"></class>
+			</classes>
+		</test> <!-- Test -->
+	</suite> <!-- Suite -->
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
@@ -2267,22 +2267,22 @@ public class J053_TestngParallel_RunTogether {
 	}
 }
 
-	J052_TestngParallel & J053_TestngParallel_RunTogether_Testng
+> J052_TestngParallel & J053_TestngParallel_RunTogether_Testng
 
-		<?xml version="1.0" encoding="UTF-8"?>
-		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-		<suite name="Suite" parallel="tests" thread-count="3">
-			<test thread-count="3" name="Parallel Test">
-				<classes>
-					<class name="java_Basics_Testng.J052_TestngParallel"></class>
-				</classes>
-			</test> <!-- Test -->
-			<test name="Parallet Test 2">
-				<classes>
-					<class name="java_Basics_Testng.J053_TestngParallel_RunTogether"></class>
-				</classes>
-			</test>
-		</suite> <!-- Suite -->
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+	<suite name="Suite" parallel="tests" thread-count="3">
+		<test thread-count="3" name="Parallel Test">
+			<classes>
+				<class name="java_Basics_Testng.J052_TestngParallel"></class>
+			</classes>
+		</test> <!-- Test -->
+		<test name="Parallet Test 2">
+			<classes>
+				<class name="java_Basics_Testng.J053_TestngParallel_RunTogether"></class>
+			</classes>
+		</test>
+	</suite> <!-- Suite -->
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
@@ -2356,22 +2356,22 @@ public class J054_TestngGroups {
 	}
 }
 
-	J054_TestngGroups_Testng
+> J054_TestngGroups_Testng
 
-		<?xml version="1.0" encoding="UTF-8"?>
-		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-		<suite name="Suite">
-			<test thread-count="5" name="Testng">
-				<groups>
-					<run>
-						<exclude name="smoke"></exclude>
-					</run>
-				</groups>
-				<classes>
-					<class name="java_Basics_Testng.J054_TestngGroups"></class>
-				</classes>
-			</test> <!-- Test -->
-		</suite> <!-- Suite -->
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+	<suite name="Suite">
+		<test thread-count="5" name="Testng">
+			<groups>
+				<run>
+					<exclude name="smoke"></exclude>
+				</run>
+			</groups>
+			<classes>
+				<class name="java_Basics_Testng.J054_TestngGroups"></class>
+			</classes>
+		</test> <!-- Test -->
+	</suite> <!-- Suite -->
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
@@ -2412,22 +2412,22 @@ public class J055_TestngDependant {
 	}
 }
 
-	J055_TestngDependant_Testng
+> J055_TestngDependant_Testng
 
-		<?xml version="1.0" encoding="UTF-8"?>
-		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-		<suite name="Suite">
-			<test thread-count="5" name="Testng">
-				<groups>
-					<run>
-						<exclude name="smoke"></exclude>
-					</run>
-				</groups>
-				<classes>
-					<class name="java_Basics_Testng.J055_TestngDependant"></class>
-				</classes>
-			</test> <!-- Test -->
-		</suite> <!-- Suite -->
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+	<suite name="Suite">
+		<test thread-count="5" name="Testng">
+			<groups>
+				<run>
+					<exclude name="smoke"></exclude>
+				</run>
+			</groups>
+			<classes>
+				<class name="java_Basics_Testng.J055_TestngDependant"></class>
+			</classes>
+		</test> <!-- Test -->
+	</suite> <!-- Suite -->
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
@@ -2552,22 +2552,22 @@ public class J057_TestngDataProviderSoftAssert {
 	}
 }
 
-	J056_TestngDataProviderAssert & J057_TestngDataProviderSoftAssert_Testng
+> J056_TestngDataProviderAssert & J057_TestngDataProviderSoftAssert_Testng
 
-		<?xml version="1.0" encoding="UTF-8"?>
-		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-		<suite name="Suite">
-			<test thread-count="3" name="Assert">
-				<classes>
-					<class name="java_Basics_Testng.J056_TestngDataProviderAssert"></class>
-				</classes>
-			</test> <!-- Test -->
-			<test thread-count="3" name="Soft Assert">
-				<classes>
-					<class name="java_Basics_Testng.J057_TestngDataProviderSoftAssert"></class>
-				</classes>
-			</test> <!-- Test -->
-		</suite> <!-- Suite -->
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+	<suite name="Suite">
+		<test thread-count="3" name="Assert">
+			<classes>
+				<class name="java_Basics_Testng.J056_TestngDataProviderAssert"></class>
+			</classes>
+		</test> <!-- Test -->
+		<test thread-count="3" name="Soft Assert">
+			<classes>
+				<class name="java_Basics_Testng.J057_TestngDataProviderSoftAssert"></class>
+			</classes>
+		</test> <!-- Test -->
+	</suite> <!-- Suite -->
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
