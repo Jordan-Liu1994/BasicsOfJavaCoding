@@ -706,14 +706,14 @@ public class J021_Calculator_Access {
 	}
 }
 
-	Calculator_Testng
+	J020_Calculator_Testng
 	
 		<?xml version="1.0" encoding="UTF-8"?>
 		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 		<suite name="Suite">
 			<test thread-count="5" name="Test_Driven_Development">
 				<classes>
-					<class name="d_Test_Driven_Development_004.Calculator_Run"></class>
+					<class name="java_Basics.J021_Calculator_Access"></class>
 				</classes>
 			</test> <!-- Test -->
 		</suite> <!-- Suite -->
@@ -1373,6 +1373,18 @@ public class J034_SeleniumIntro {
 		driver.quit();
 	}
 }
+
+	J034_SeleniumIntro_Testng
+
+		<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+		<suite name="Suite">
+			<test thread-count="5" name="Selenium">
+				<classes>
+					<class name="e_Selenium_005.Intro_To_Selenium"></class>
+				</classes>
+			</test> <!-- Test -->
+		</suite> <!-- Suite -->
 
 Results :  
 Try it to find out yourself
@@ -2069,5 +2081,644 @@ Try it to find out yourself
 			</classes>
 		</test> <!-- Test -->
 	</suite> <!-- Suite -->
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J050_TestngListener
+package java_Basics_Testng;
+
+import org.testng.ITestContext;  
+import org.testng.ITestListener;  
+import org.testng.ITestResult;  
+import com.relevantcodes.extentreports.ExtentReports;  
+import com.relevantcodes.extentreports.ExtentTest;  
+import com.relevantcodes.extentreports.LogStatus;  
+
+public class J050_TestngListener implements ITestListener {
+
+	ExtentReports extent;
+	ExtentTest test;
+
+	@Override
+	public void onStart(ITestContext context) {
+		System.out.println("Start " + context.getName());
+		extent = TestNG_Extent_Report_Generate.createReport("Dependant_Report.html");
+		test = extent.startTest(context.getName());
+	}
+
+	@Override
+	public void onTestSuccess(ITestResult result) {
+		System.out.println("Test " + result.getName() + " Succeed!");
+		test.log(LogStatus.PASS, result.getName() + " is passed!");
+	}
+
+	@Override
+	public void onTestFailure(ITestResult result) {
+		System.out.println("Test " + result.getName() + " Failed!");
+		test.log(LogStatus.FAIL, result.getName() + " is failed!");
+	}
+
+	@Override
+	public void onTestSkipped(ITestResult result) {
+		System.out.println("Test " + result.getName() + " Skipped!");
+		test.log(LogStatus.SKIP, result.getName() + " is skipped!");
+	}
+
+	@Override
+	public void onFinish(ITestContext context) {
+		System.out.println("End " + context.getName());
+		extent.endTest(test);
+		extent.flush();
+	}
+
+}
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J051_TestngParameter
+package java_Basics_Testng;
+
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+import org.openqa.selenium.firefox.FirefoxDriver;  
+import org.testng.annotations.AfterSuite;  
+import org.testng.annotations.Parameters;  
+import org.testng.annotations.Test;  
+
+public class J051_TestngParameter {
+
+	WebDriver driver;
+	String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+	String firefoxDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\geckodriver.exe";
+
+	@Test
+	@Parameters({ "browser", "methodlogy" })
+	public void defineDriver(String browser, String methodlogy) throws InterruptedException {
+		System.out.println("Parameter value = " + browser);
+		if (browser.equalsIgnoreCase("chrome")) {
+			System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+			driver = new ChromeDriver();
+			driver.get("http://www.rtw029.com");
+			System.out.println("Driver = New Chrome Driver");
+		}
+
+		else if (browser.equalsIgnoreCase("firefox")) {
+			System.setProperty("webdriver.gecko.driver", firefoxDriverPath);
+			driver = new FirefoxDriver();
+			driver.get("http://www.rtw029.com");
+			System.out.println("Driver = New Firefox Driver");
+		}
+
+		System.out.println("Done! " + methodlogy);
+	}
+
+	@AfterSuite
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(1500);
+		driver.quit();
+	}
+}
+
+	J051_TestngParameter_Testng
+
+		<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+		<suite name="Suite">
+			<parameter name="browser" value="firefox"></parameter>
+			<parameter name="methodlogy" value="Smoke Test"></parameter>
+			<test thread-count="3" name="Java">
+				<classes>
+					<class name="c_TestNG_003.TestNG_Parameter"></class>
+				</classes>
+			</test> <!-- Test -->
+		</suite> <!-- Suite -->
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J052_TestngParallel
+package java_Basics_Testng;
+
+import java.net.MalformedURLException;  
+import java.net.URL;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.remote.DesiredCapabilities;  
+import org.openqa.selenium.remote.RemoteWebDriver;  
+import org.testng.annotations.AfterSuite;  
+import org.testng.annotations.Test;  
+
+public class J052_TestngParallel {
+	WebDriver driver;
+	URL url;
+	DesiredCapabilities capab;
+
+	@Test
+	public void parallelMethod() throws MalformedURLException {
+
+		capab = new DesiredCapabilities();
+		capab.setBrowserName("firefox");
+		url = new URL("http://192.168.88.211:4444/wd/hub");
+		driver = new RemoteWebDriver(url, capab);
+		Point a = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(a.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("http://www.google.com");
+	}
+
+	@AfterSuite
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(1500);
+		driver.quit();
+	}
+}
+
+## J053_TestngParallel_RunTogether
+package java_Basics_Testng;
+
+import java.net.MalformedURLException;  
+import java.net.URL;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.remote.DesiredCapabilities;  
+import org.openqa.selenium.remote.RemoteWebDriver;  
+import org.testng.annotations.AfterSuite;  
+import org.testng.annotations.Test;  
+
+public class J053_TestngParallel_RunTogether {
+	WebDriver driver;
+	URL url;
+	DesiredCapabilities capab;
+
+	@Test
+	public void parallelMethod() throws MalformedURLException {
+
+		capab = new DesiredCapabilities();
+		capab.setBrowserName("chrome");
+		url = new URL("http://192.168.88.211:4444/wd/hub");
+		driver = new RemoteWebDriver(url, capab);
+		driver.manage().window().maximize();
+		driver.get("http://www.youtube.com");
+	}
+
+	@AfterSuite
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(1500);
+		driver.quit();
+	}
+}
+
+	J052_TestngParallel & J053_TestngParallel_RunTogether_Testng
+
+		<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+		<suite name="Suite" parallel="tests" thread-count="3">
+			<test thread-count="3" name="Parallel Test">
+				<classes>
+					<class name="java_Basics_Testng.J052_TestngParallel"></class>
+				</classes>
+			</test> <!-- Test -->
+			<test name="Parallet Test 2">
+				<classes>
+					<class name="java_Basics_Testng.J053_TestngParallel_RunTogether"></class>
+				</classes>
+			</test>
+		</suite> <!-- Suite -->
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J054_TestngGroups
+package java_Basics_Testng;
+
+import org.testng.Assert;  
+import org.testng.annotations.AfterClass;  
+import org.testng.annotations.AfterMethod;  
+import org.testng.annotations.BeforeClass;  
+import org.testng.annotations.BeforeMethod;  
+import org.testng.annotations.BeforeSuite;  
+import org.testng.annotations.BeforeTest;  
+import org.testng.annotations.Test;  
+
+public class J054_TestngGroups {
+
+	@Test(groups = { "regression" })
+	public void tMethod1() {
+		System.out.println("Test 1");
+		System.out.println("----------------------------------------");
+	}
+	
+	@Test(groups = { "regression" })
+	public void tMethod8() {
+		System.out.println("Test 8");
+		System.out.println("----------------------------------------");
+	}
+
+	@BeforeTest(groups = { "regression" })
+	public void tMethod2() {
+		System.out.println("Before test 2");
+		System.out.println("----------------------------------------");
+		Assert.fail();
+	}
+
+	@AfterClass(groups = { "regression" })
+	public void tMethod3() {
+		System.out.println("After class 3");
+		System.out.println("----------------------------------------");
+	}
+
+	@BeforeSuite(groups = { "regression", "smoke" })
+	public void tMethod4() {
+		System.out.println("Before suite 4");
+		System.out.println("----------------------------------------");
+	}
+
+	@BeforeClass(groups = { "regression", "smoke" })
+	public void tMethod5() {
+		System.out.println("Before class 5");
+		System.out.println("----------------------------------------");
+	}
+
+	@AfterMethod(groups = { "smoke" })
+	public void tMethod6() {
+		System.out.println("After method 6");
+		System.out.println("----------------------------------------");
+	}
+
+	@BeforeMethod(groups = { "regression", "smoke" })
+	public void tMethod7() {
+		System.out.println("Before method 7");
+		System.out.println("----------------------------------------");
+	}
+
+	@Test(groups = { "regression" })
+	public void tMethod9() {
+		System.out.println("Test 9");
+		System.out.println("----------------------------------------");
+	}
+}
+
+	J054_TestngGroups_Testng
+
+		<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+		<suite name="Suite">
+			<test thread-count="5" name="Testng">
+				<groups>
+					<run>
+						<exclude name="smoke"></exclude>
+					</run>
+				</groups>
+				<classes>
+					<class name="java_Basics_Testng.J054_TestngGroups"></class>
+				</classes>
+			</test> <!-- Test -->
+		</suite> <!-- Suite -->
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J055_TestngDependant
+package java_Basics_Testng;
+
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+import org.testng.Assert;  
+import org.testng.annotations.BeforeTest;  
+import org.testng.annotations.Listeners;  
+import org.testng.annotations.Test;  
+
+@Listeners(java_Basics_Testng.J023_Listener.class)
+public class J055_TestngDependant {
+
+	WebDriver driver;
+	String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	@BeforeTest
+	public void defineDriver() {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+		driver.quit();
+	}
+
+	@Test
+	public void testMethod() {
+		System.out.println("Is this working?");
+		Assert.fail();
+	}
+
+	@Test(dependsOnMethods = "testMethod")
+	public void testMetho2() {
+		System.out.println("Passed!");
+	}
+}
+
+	J055_TestngDependant_Testng
+
+		<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+		<suite name="Suite">
+			<test thread-count="5" name="Testng">
+				<groups>
+					<run>
+						<exclude name="smoke"></exclude>
+					</run>
+				</groups>
+				<classes>
+					<class name="java_Basics_Testng.J055_TestngDependant"></class>
+				</classes>
+			</test> <!-- Test -->
+		</suite> <!-- Suite -->
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J056_TestngDataProviderAssert
+package java_Basics_Testng;
+
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;  
+import org.testng.Assert;  
+import org.testng.annotations.AfterTest;  
+import org.testng.annotations.BeforeTest;  
+import org.testng.annotations.DataProvider;  
+import org.testng.annotations.Test;  
+
+public class J056_TestngDataProviderAssert {
+
+	WebDriver driver;
+	String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	@BeforeTest
+	public void defineDriver() {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Point browser = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browser.moveBy(2000, 0));
+		driver.manage().window().maximize();
+		driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+	}
+
+	@Test(dataProvider = "dataProviderMethod")
+	public void loginMethod(String username, String password) throws InterruptedException {
+		WebElement user1 = driver.findElement(By.id("email"));
+		WebElement pass1 = driver.findElement(By.id("passwd"));
+
+		user1.clear();
+		user1.sendKeys(username);
+		pass1.clear();
+		pass1.sendKeys(password);
+		driver.findElement(By.id("SubmitLogin")).click();
+		WebElement errorM = driver.findElement(By.xpath("//p[normalize-space()='There is 1 error']"));
+		// Force stop if error occurs!!
+		Assert.assertEquals(errorM.getText(), "There is 1 error");
+		Thread.sleep(2000);
+		System.out.println(username + "---" + password);
+		System.out.println(errorM.getText());
+	}
+
+	@DataProvider
+	public String[][] dataProviderMethod() {
+		String loginD[][] = { { "jordan", "test" }, { "hello", "world" }, { "time", "dime" } };
+		return loginD;
+	}
+
+	@AfterTest
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.quit();
+	}
+}
+
+## J057_TestngDataProviderSoftAssert
+package java_Basics_Testng;
+
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+import org.testng.annotations.AfterTest;  
+import org.testng.annotations.BeforeTest;  
+import org.testng.annotations.DataProvider;  
+import org.testng.annotations.Test;  
+import org.testng.asserts.SoftAssert;  
+
+public class J057_TestngDataProviderSoftAssert {
+
+	WebDriver driver;
+	String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	@BeforeTest
+	public void defineDriver() {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Point browser = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browser.moveBy(2000, 0));
+		driver.manage().window().maximize();
+		driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+	}
+
+	@Test(dataProvider = "dataProviderMethod")
+	public void loginMethod(String username, String password) throws InterruptedException {
+		WebElement user1 = driver.findElement(By.id("email"));
+		WebElement pass1 = driver.findElement(By.id("passwd"));
+
+		user1.clear();
+		user1.sendKeys(username);
+		pass1.clear();
+		pass1.sendKeys(password);
+		driver.findElement(By.id("SubmitLogin")).click();
+		WebElement errorM = driver.findElement(By.xpath("//p[normalize-space()='There is 1 error']"));
+		SoftAssert softA = new SoftAssert();
+		softA.assertEquals(errorM.getText(), "There is one error");
+		softA.assertAll();
+		Thread.sleep(2000);
+		System.out.println(username + "---" + password);
+		System.out.println(errorM.getText());
+	}
+
+	@DataProvider
+	public String[][] dataProviderMethod() {
+		String loginD[][] = { { "jordan", "test" }, { "hello", "world" }, { "time", "dime" } };
+		return loginD;
+	}
+
+	@AfterTest
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.quit();
+	}
+}
+
+	J056_TestngDataProviderAssert & J057_TestngDataProviderSoftAssert_Testng
+
+		<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+		<suite name="Suite">
+			<test thread-count="3" name="Assert">
+				<classes>
+					<class name="java_Basics_Testng.J056_TestngDataProviderAssert"></class>
+				</classes>
+			</test> <!-- Test -->
+			<test thread-count="3" name="Soft Assert">
+				<classes>
+					<class name="java_Basics_Testng.J057_TestngDataProviderSoftAssert"></class>
+				</classes>
+			</test> <!-- Test -->
+		</suite> <!-- Suite -->
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J058_TestngExtentReportGenerate
+package java_Basics_Testng;
+
+import com.relevantcodes.extentreports.ExtentReports;  
+
+public class J058_TestngExtentReportGenerate {
+
+	public static ExtentReports extent;
+	public static String extentReportPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Report\\";
+
+	public static ExtentReports createReport(String reportName) {
+		extent = new ExtentReports(extentReportPath + reportName);
+		return extent;
+	}
+}
+
+## J059_TestngExtentReportAddOnItems
+package java_Basics_Testng;
+
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
+import org.openqa.selenium.WebDriver;  
+import org.testng.annotations.Test;  
+import com.relevantcodes.extentreports.ExtentReports;  
+import com.relevantcodes.extentreports.ExtentTest;  
+import com.relevantcodes.extentreports.LogStatus;  
+
+public class J059_TestngExtentReportAddOnItems {
+
+	WebDriver driver;
+	String extentReportPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Report\\Report.html";
+	String screenShotPath = "C:\\Users\\Jordan Liu\\Downloads\\QC Images\\108x108 pixels\\108x108.png";
+	
+	@Test
+	public void extentReport() {
+		ExtentReports extent = new ExtentReports(extentReportPath);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY HH:mm:ss");
+		
+		extent.addSystemInfo("Link", "www.the777888.com");
+		extent.addSystemInfo("Environment", "Staging");
+		extent.addSystemInfo("Username", "Jordan Liu");
+		
+		ExtentTest test = extent.startTest("1st test" + dateFormat);
+		test.assignCategory("1st Test");
+		test.log(LogStatus.PASS, "1st test result");
+		test.log(LogStatus.FAIL, "Failed", test.addScreenCapture(screenShotPath));
+		test.log(LogStatus.WARNING, "Warning");
+
+		ExtentTest test2 = extent.startTest("2nd test");
+		test.assignCategory("2nd Test");
+		test2.log(LogStatus.ERROR, "Error");
+
+		extent.endTest(test);
+		extent.flush();
+	}
+}
+
+## J060_TestngExtentReportCreation
+package java_Basics_Testng;
+
+import org.openqa.selenium.By;  
+import org.openqa.selenium.Point;  
+import org.openqa.selenium.WebDriver;  
+import org.openqa.selenium.WebElement;  
+import org.openqa.selenium.chrome.ChromeDriver;  
+import org.testng.annotations.AfterTest;  
+import org.testng.annotations.BeforeTest;  
+import org.testng.annotations.DataProvider;  
+import org.testng.annotations.Test;  
+import org.testng.asserts.SoftAssert;  
+import com.relevantcodes.extentreports.ExtentReports;  
+import com.relevantcodes.extentreports.ExtentTest;  
+import com.relevantcodes.extentreports.LogStatus;  
+
+public class J060_TestngExtentReportCreation {
+
+	WebDriver driver;
+	String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+	ExtentReports extent;
+	ExtentTest test;
+
+	@BeforeTest
+	public void defineDriver() {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		TestNG_Extent_Report_Generate reportGenerate = new TestNG_Extent_Report_Generate();
+		extent = reportGenerate.createReport("AutomationPractice.html");
+		extent.addSystemInfo("Link", "www.automationpractice.com");
+		extent.addSystemInfo("Environment", "Staging");
+		extent.addSystemInfo("Username", "Jordan Liu");
+		
+		driver = new ChromeDriver();
+		Point browser = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browser.moveBy(2000, 0));
+		driver.manage().window().maximize();
+		driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+	}
+
+	@Test(dataProvider = "dataProviderMethod")
+	public void loginMethod(String username, String password) throws InterruptedException {
+		test = extent.startTest("Test start");
+		WebElement user1 = driver.findElement(By.id("email"));
+		WebElement pass1 = driver.findElement(By.id("passwd"));
+
+		user1.clear();
+		user1.sendKeys(username);
+		pass1.clear();
+		pass1.sendKeys(password);
+		driver.findElement(By.id("SubmitLogin")).click();
+		WebElement errorM = driver.findElement(By.xpath("//p[normalize-space()='There is 1 error']"));
+		Boolean testR = errorM.getText().equalsIgnoreCase("There is 1 error");
+		if(testR) {
+			test.log(LogStatus.PASS, "Error message is correct & same!");
+		}
+		else {
+			test.log(LogStatus.FAIL, "Error message is wrong & not matching!");
+		}
+		SoftAssert softA = new SoftAssert();
+		softA.assertEquals(errorM.getText(), "There is one error");
+		System.out.println(username + "---" + password);
+		softA.assertAll();
+	}
+
+	@DataProvider
+	public String[][] dataProviderMethod() {
+		String loginD[][] = { { "jordan", "test" }, { "hello", "world" }, { "time", "dime" } };
+		return loginD;
+	}
+
+	@AfterTest
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(2000);
+		extent.endTest(test);
+		extent.flush();
+		driver.quit();
+	}
+	
+}
+
+	J060_TestngExtentReportCreation_Testng
+
+		<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+		<suite name="Suite">
+			<test thread-count="3" name="Assert">
+				<classes>
+					<class name="java_Basics_Testng.J060_TestngExtentReportCreation"></class>
+				</classes>
+			</test> <!-- Test -->
+		</suite> <!-- Suite -->
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
