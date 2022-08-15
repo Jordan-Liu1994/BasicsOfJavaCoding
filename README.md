@@ -700,24 +700,13 @@ package java_Basics;
 public class J021_Calculator_Access {
 
 	@Test
-	public void testCalculator1() {
+	public void testCalculator() {
 		J020_Calculator calculate = new J020_Calculator();
 		Assert.assertEquals(calculate.addValue(2, 3), 5);
 	}
 }
 
 Results :  
-1. J019_ClassObject = 250  
-
-2. J019_ClassObject = 200  
-
-3. J019_ClassObject = 100  
-
-4. J019_ClassObject = 100  
-   Arguement is = Passed!
-
-5. J019_ClassObject = 250
-
-6. J019_ClassObject = Hello Simplilearn  
+PASSED: testCalculator  
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
