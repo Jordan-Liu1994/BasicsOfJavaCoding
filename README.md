@@ -340,3 +340,63 @@ Statement 6
 Statement 7  
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J013_ForcedException
+package java_Basics;
+
+public class J013_ForcedException {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		System.out.println("Statement 1");
+		
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Statement 2");
+		
+		Thread.sleep(1500);
+		System.out.println("Statement 3");
+	}
+}
+
+Results :  
+Statement 1  
+Statement 2  
+Statement 3  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J014_Constructor
+package java_Basics;
+
+public class J014_Constructor {
+
+	public Java_Constructor() {
+			System.out.println("Constructor executed!");
+		}
+
+	public Java_Constructor(int a, int b) {
+			System.out.println(a * b);
+		}
+}
+
+## J015_Constructor_Access
+package java_Basics;
+
+public class J015_Constructor_Access {
+
+	public static void main(String[] args) {
+
+		J014_Constructor constructorMethod = new J014_Constructor();
+		J014_Constructor constructorMethod2 = new J014_Constructor(10, 15);
+	}
+}
+
+Results :  
+Constructor executed!  
+150  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
