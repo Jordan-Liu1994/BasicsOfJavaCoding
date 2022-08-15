@@ -706,6 +706,17 @@ public class J021_Calculator_Access {
 	}
 }
 
+	Calculator_Testng
+		<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+		<suite name="Suite">
+			<test thread-count="5" name="Test_Driven_Development">
+				<classes>
+					<class name="d_Test_Driven_Development_004.Calculator_Run"></class>
+				</classes>
+			</test> <!-- Test -->
+		</suite> <!-- Suite -->
+
 Results :  
 PASSED: testCalculator  
 
@@ -2051,9 +2062,9 @@ Try it to find out yourself
 	<?xml version="1.0" encoding="UTF-8"?>
 	<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 	<suite name="Suite">
-		<test thread-count="5" name="**TEST NAME**">
+		<test thread-count="5" name="(TEST NAME)">
 			<classes>
-				<class name="**PACKAGE NAME**.**CLASS NAME**"></class>
+				<class name="(PACKAGE NAME).(CLASS NAME)"></class>
 			</classes>
 		</test> <!-- Test -->
 	</suite> <!-- Suite -->
