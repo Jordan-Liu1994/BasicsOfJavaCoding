@@ -179,6 +179,7 @@ public class J006_AccessModifier {
 	protected int f = 300;
 }
 
+## J007_AccessModifier_Access
 package java_Basics;
 
 public class J007_AccessModifier_Access {
@@ -206,6 +207,7 @@ Protected value = 60000
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
+## J008_AccessModifier_InDifferentPackage
 package java_Basics_2;
 
 import java_Basics.J006_AccessModifier;
