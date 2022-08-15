@@ -723,6 +723,7 @@ PASSED: testCalculator
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
+# Utilities
 ## J022_ExtentReportGenerate
 package java_Basics_Junit_Utility;
 
@@ -888,7 +889,7 @@ public class J025_ScrollDown {
 }
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
-
+# Junit
 ## J026_Junit_Assertions
 package java_Basics_Junit;
 
@@ -1992,6 +1993,7 @@ Try it to find out yourself
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
+# Utilities 2
 ## J046_CucumberAccess
 package java_Basics_Junit_Utility;
 
