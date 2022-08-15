@@ -1,4 +1,4 @@
-**# BasicsOfJavaCoding**
+# BasicsOfJavaCoding
 All the basics of JAVA coding by Simplilearn
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
@@ -25,7 +25,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-**## J002_LoopDoWhile**
+## J002_LoopDoWhile
 package java_Basics;
 
 public class J002_LoopDoWhile {
@@ -48,7 +48,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-**## J003_LoopFor**
+## J003_LoopFor
 package java_Basics;
 
 public class J003_LoopFor {
@@ -73,7 +73,7 @@ Do While Loop has finished & stopped
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-**## J004_LoopWhile**
+## J004_LoopWhile
 package java_Basics;
 
 public class J004_LoopWhile {
@@ -96,7 +96,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-**## J005_Typecasting**
+## J005_Typecasting
 package java_Basics;
 
 public class J005_Typecasting {
@@ -161,7 +161,7 @@ Results :
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-**## J006_AccessModifier**
+## J006_AccessModifier
 package java_Basics;
 
 public class J006_AccessModifier {
@@ -179,7 +179,7 @@ public class J006_AccessModifier {
 	protected int f = 300;
 }
 
-**## J007_AccessModifier_Access**
+## J007_AccessModifier_Access
 package java_Basics;
 
 public class J007_AccessModifier_Access {
@@ -207,7 +207,7 @@ Protected value = 60000
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-**## J008_AccessModifier_InDifferentPackage**
+## J008_AccessModifier_InDifferentPackage
 package java_Basics_2;
 
 import java_Basics.J006_AccessModifier;
@@ -244,7 +244,7 @@ Protected can only use in it's own package file
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-**## J009_InheritParent**
+## J009_InheritParent
 package java_Basics;
 
 public class J009_InheritParent {
@@ -258,7 +258,7 @@ public class J009_InheritParent {
 	}
 }
 
-**## J010_InheritChild**
+## J010_InheritChild
 package java_Basics;
 
 public class J010_InheritChild extends J009_InheritParent {
@@ -276,5 +276,69 @@ public class J010_InheritChild extends J009_InheritParent {
 Results :  
 Value = 1250  
 Hello World!  
+
+## J011_InheritGrandChild
+package java_Basics;
+
+public class J011_InheritGrandChild extends J010_InheritChild {
+
+	public static void main(String[] args) {
+		System.out.println(additionMethod());
+		System.out.println(a - b);
+	}
+}
+
+Results :  
+1275  
+-25  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J012_ExceptionHandling
+package java_Basics;
+
+public class J012_ExceptionHandling {
+
+	public static void main(String[] args) {
+
+		int a = 1;
+		int b[] = { 1, 2, 3, 4, 5 };
+
+		System.out.println("Statement " + a++);
+		System.out.println("Statement " + a++);
+		System.out.println("Statement " + a++);
+		System.out.println("Statement " + a++);
+		
+		try {
+			System.out.println("--------------------------------------------------");
+			System.out.println(b[5]);			
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("There is an error with ARRAY INDEX!");
+			e.printStackTrace();			
+		} catch (ArithmeticException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("Continue the process!");
+			System.out.println("--------------------------------------------------");
+		}
+		
+		System.out.println("Statement " + a++);
+		System.out.println("Statement " + a++);
+		System.out.println("Statement " + a++);
+	}
+}
+
+Results :  
+Statement 2  
+Statement 3  
+Statement 4  
+--------------------------------------------------  
+There is an error with ARRAY INDEX!  
+java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5 at a_Java_001.Java_Exception_Handling.main(Java_Exception_Handling.java:18)  
+Continue the process!  
+--------------------------------------------------  
+Statement 5  
+Statement 6  
+Statement 7  
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
