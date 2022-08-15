@@ -400,3 +400,82 @@ Constructor executed!
 150  
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J016_Collection
+package java_Basics;
+
+public class J016_Collection {
+
+	public static void main(String[] args) {
+		List<Integer> intList = new ArrayList<Integer>();
+		intList.add(500);
+		intList.add(40);
+		intList.add(75);
+		intList.add(2);
+		intList.add(230);
+		intList.add(13);
+		System.out.println(intList);
+
+		Collections.sort(intList);
+		System.out.println(intList);
+
+		Collections.reverse(intList);
+		System.out.println(intList);
+		System.out.println(intList.get(2));
+
+		List<String> strList = new ArrayList<String>();
+		strList.add("Hello");
+		strList.add("Jordan");
+		strList.add("Fire");
+		strList.add("Many");
+		strList.add("Big");
+		strList.add("Hey");
+
+		System.out.println(strList);
+
+		Collections.sort(strList);
+		System.out.println(strList);
+
+		Collections.reverse(strList);
+		System.out.println(strList);
+		System.out.println(strList.get(2));
+
+		Map<String, String> myMap = new HashMap<>();
+		myMap.put("Name", "Jordan");
+		myMap.put("Name2", "Jord");
+		myMap.put("Name3", "Jor");
+		myMap.put("Name4", "Dan");
+		myMap.put("Name5", "Ord");
+
+		System.out.println(myMap);
+		System.out.println(myMap.get("Name"));
+		
+		Map<String, String> myM1 = mapMethod();
+		System.out.println(myM1.get("Name5"));
+	}
+
+	public static Map<String, String> mapMethod() {
+		Map<String, String> myM = new HashMap<>();
+		myM.put("Name", "Jordan");
+		myM.put("Name2", "Jord");
+		myM.put("Name3", "Jor");
+		myM.put("Name4", "Dan");
+		myM.put("Name5", "Ord");
+		return myM;
+	}
+}
+
+Results :  
+[500, 40, 75, 2, 230, 13]  
+[2, 13, 40, 75, 230, 500]  
+[500, 230, 75, 40, 13, 2]  
+75  
+[Hello, Jordan, Fire, Many, Big, Hey]  
+[Big, Fire, Hello, Hey, Jordan, Many]  
+[Many, Jordan, Hey, Hello, Fire, Big]  
+Hey  
+{Name3=Jor, Name4=Dan, Name5=Ord, Name=Jordan, Name2=Jord}  
+Jordan  
+Ord  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
