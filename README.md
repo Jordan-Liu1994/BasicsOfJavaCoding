@@ -712,7 +712,7 @@ PASSED: testCalculator
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
 ## J022_ExtentReportGenerate
-package java_Basics_Junit;
+package java_Basics_Junit_Utility;
 
 import com.relevantcodes.extentreports.ExtentReports;
 
@@ -728,7 +728,7 @@ public class J022_ExtentReportGenerate {
 }
 
 ## J023_Listener
-package java_Basics_Junit;
+package java_Basics_Junit_Utility;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -811,15 +811,12 @@ public class J023_Listener implements ITestListener {
 			<scripts>
 				<![CDATA[
 		$(document).ready(function() {
-
 		});
 	      ]]>
 			</scripts>
-
 			<!-- custom styles -->
 			<styles>
 				<![CDATA[
-
 	      ]]>
 			</styles>
 		</configuration>
@@ -828,7 +825,7 @@ public class J023_Listener implements ITestListener {
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
 ## J024_Screenshot
-package java_Basics_Junit;
+package java_Basics_Junit_Utility;
 
 import java.io.File;
 import java.io.IOException;
@@ -859,7 +856,7 @@ public class J024_Screenshot {
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
 ## J025_ScrollDown
-package java_Basics_Junit;
+package java_Basics_Junit_Utility;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -877,5 +874,651 @@ public class J025_ScrollDown {
 		js.executeScript("window.scrollBy(0,500)", "");
 	}
 }
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J026_Junit_Assertions
+package java_Basics_Junit;
+
+package a_Junit_001;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class J026_Junit_Assertions {
+
+	@Test
+	public void testM0() {
+		String str1 = "abc";
+		String str2 = "def";
+		int val1 = 5;
+		int val2 = 6;
+		String str3 = new String("abc");
+		String str4 = new String("abc");
+		String[] arr1 = {"Jo", "Lo", "Ho"};
+		String[] arr2 = {"Jo", "Lo", "Ho"};
+		String[] arr3 = {"Jordan", "Loki", "Hope"};
+		
+		assertEquals(str1, str2);
+		assertEquals(str3, str4);
+		assertEquals(val1, val2);
+		assertTrue(val2 > val1);
+		assertFalse(val1 > val2);
+		assertArrayEquals(arr1, arr2);
+		assertArrayEquals(arr1, arr3);
+	}
+}
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J027_Junit_Assumptions
+package java_Basics_Junit;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class J027_Junit_Assumptions {
+
+	public String b = "Assumed correct";
+	
+	@Test
+	public void testAssumption() {
+		int a = 10;
+		assumeTrue(a < 5);
+		
+> OR
+
+		assumeFalse(a > 5);
+	}
+
+	@RepeatedTest(5)
+	public void repeat() {
+		System.out.println("Repeat");
+		int a = 2;
+		assertEquals(2, a);
+		System.out.println(a + "-" + b);
+	}
+}
+
+Results :  
+Repeat  
+2-Assumed correct  
+Repeat  
+2-Assumed correct  
+Repeat  
+2-Assumed correct  
+Repeat  
+2-Assumed correct  
+Repeat  
+2-Assumed correct  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J028_Junit_AtMethods
+package java_Basics_Junit;
+
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class J028_Junit_AtMethods {
+
+	@Test
+	public void testM0() {
+		System.out.println("Hello Junit 5 test");
+	}
+
+	@Test
+	public void testM1() {
+		System.out.println("Hello Junit 5 test 2");
+	}
+
+	@BeforeEach
+	public void testBE() {
+		System.out.println("Before each tests");
+	}
+
+	@BeforeAll
+	public static void testAll() {
+		System.out.println("Before all");
+	}
+
+	@AfterAll
+	public static void testAAll() {
+		System.out.println("After all");
+	}
+}
+
+Results :  
+Before all  
+Before each tests  
+Hello Junit 5 test  
+Before each tests  
+Hello Junit 5 test 2  
+After all  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J029_Junit_DynamicTest
+package java_Basics_Junit;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.DynamicTest.*;
+import java.util.Arrays;
+import java.util.Collection;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
+
+public class J029_Junit_DynamicTest {
+
+	@TestFactory
+	Collection<DynamicTest> dynamicM() {
+		return Arrays.asList(dynamicTest("TestM1", () -> assertTrue(1 < 4)),
+				     dynamicTest("TestM2", () -> System.out.println("Hello")),				
+				     dynamicTest("TestM3", () -> assertEquals("He", "He")));
+	}
+}
+
+Results :  
+Hello  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J030_Junit_IgnoredDisabled
+package java_Basics_Junit;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
+import org.junit.jupiter.api.condition.DisabledOnJre;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.JRE;
+import org.junit.jupiter.api.condition.OS;
+
+public class J030_Junit_IgnoredDisabled {
+
+	@Test
+	@DisabledOnOs(OS.WINDOWS)
+	public void testDisabled() {
+		System.out.println("Hello Junit 5 test");
+	}
+
+	@Test
+	@DisabledOnJre(JRE.OTHER)
+	public void testJRE() {
+		System.out.println("Hello Junit 5 test 2");
+	}
+	
+	@Test
+	@DisabledIfSystemProperty(named = "file.separator", matches = "//")
+	public void testSYSPROP() {
+		System.out.println("c:"+File.separator+"test"+File.separator+"folder");
+	}
+	
+	@Test
+	@Disabled
+	public void MustIgnore() {
+		System.out.println("Ignore");
+	}
+}
+
+Results :  
+Hello Junit 5 test 2  
+c:\test\folder  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J031_Junit_ParameterizedTestSource
+package java_Basics_Junit;
+
+import static org.testng.Assert.*;
+import java.lang.annotation.ElementType;
+import java.time.Month;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+public class J031_Junit_ParameterizedTestSource {
+
+	@ParameterizedTest
+	@ValueSource(ints = { 1, 2, 3, 4, 5 })
+	public void atestValue(int num) {
+		assertTrue(num < 10);
+		System.out.println(num);
+		System.out.println(" Value Source -------------------------");
+	}
+
+	@ParameterizedTest
+	@CsvSource(delimiter = '|', value = { "'name' | 'city'", "'Jordan' | 'SG'" })
+	public void btestCSV(String a, String b) {
+		System.out.println(a + " - " + b);
+		System.out.println(" CSV Source -------------------------");
+	}
+
+	@ParameterizedTest
+	@EnumSource(Month.class)
+	public void ctestEnum(Month month) {
+		System.out.println(month.getValue());
+		System.out.println(" Enum Source Month -------------------------");
+	}
+
+	@ParameterizedTest
+	@EnumSource(value = ElementType.class)
+	public void dtestEnum(ElementType e) {
+		System.out.println(e.name());
+		System.out.println(" Enum Source ElementType -------------------------");
+	}
+
+	@ParameterizedTest
+	@MethodSource("Rmethod")
+	public void eMethodS(String str) {
+		System.out.println(str);
+		System.out.println(" Method Source -------------------------");
+	}
+
+	static Stream<String> Rmethod() {
+		return Stream.of("X", "Y","Jordan");
+	}
+}
+
+Results :  
+Method Source = X  
+Method Source = Y  
+Method Source = Jordan  
+ 
+Enum Source ElementType = TYPE  
+Enum Source ElementType = FIELD  
+Enum Source ElementType = METHOD  
+Enum Source ElementType = PARAMETER  
+Enum Source ElementType = CONSTRUCTOR  
+Enum Source ElementType = LOCAL_VARIABLE  
+Enum Source ElementType = ANNOTATION_TYPE  
+Enum Source ElementType = PACKAGE  
+Enum Source ElementType = TYPE_PARAMETER  
+Enum Source ElementType = TYPE_USE  
+Enum Source ElementType = MODULE  
+Enum Source ElementType = RECORD_COMPONENT  
+
+Enum Source Month = 1  
+Enum Source Month = 2  
+Enum Source Month = 3  
+Enum Source Month = 4  
+Enum Source Month = 5  
+Enum Source Month = 6  
+Enum Source Month = 7  
+Enum Source Month = 8  
+Enum Source Month = 9  
+Enum Source Month = 10  
+Enum Source Month = 11  
+Enum Source Month = 12  
+
+Value Source = 1  
+Value Source = 2  
+Value Source = 3  
+Value Source = 4  
+Value Source = 5  
+
+CSV Source = name - city  
+CSV Source = Jordan - SG  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J032_Junit_Stream
+package java_Basics_Junit;
+
+import java.util.stream.Stream;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsProvider;
+
+public class J032_Junit_Stream implements ArgumentsProvider {
+
+	@Override
+	public Stream<? extends Arguments> provideArguments(ExtensionContext arg0) throws Exception {
+		return Stream.of("Apple", "Banana", "Cherry").map(Arguments::of);
+	}
+}
+
+## J033_Junit_Stream_Access
+package java_Basics_Junit;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
+
+public class J033_Junit_Stream_Access {
+
+	@ParameterizedTest
+	@ArgumentsSource(Junit_Stream.class)
+	public void atestArgSource(String argument) {
+		System.out.println(argument);
+	}
+}
+
+Results :  
+Apple  
+Banana  
+Cherry  
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+# Selenium
+## J034_SeleniumIntro
+package java_Basics_Selenium;
+
+import static org.junit.Assert.assertTrue;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class J034_SeleniumIntro {
+
+	static WebDriver driver;
+	static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+	static String lineBreak = "\n";
+	static String dashes = "----- ----- ----- ----- ----- ";
+	public static String username = "test0102";
+	public static String password = "test123";
+	public static String wrongUsername = "test010";
+	public static String wrongPassword = "test1234";
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		WebDriver driver = new ChromeDriver();
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("https://the777888.com");
+
+		String title = driver.getTitle();
+		String Url = driver.getCurrentUrl();
+		String windowHandle = driver.getWindowHandle();
+		System.out.println(title + lineBreak + dashes);
+		System.out.println(Url + lineBreak + dashes);
+		System.out.println(windowHandle + lineBreak + dashes);
+
+		WebElement doNotShowAgainToday = driver.findElement(By.xpath("//span[contains(text(),'今日不再显示')]"));
+		WebElement doNotShowAgainTodayRadioBtn = driver.findElement(By.xpath("(//*[name()='svg'])[1]"));
+		WebElement closeAnnouncementBtn = driver.findElement(By.xpath("(//button[@aria-label='Close'])[1]"));
+
+		if (doNotShowAgainToday.getText().equalsIgnoreCase("今日不再显示")) {
+			doNotShowAgainTodayRadioBtn.click();
+			closeAnnouncementBtn.click();
+			driver.navigate().refresh();
+		} else {
+			System.out.println("Error at " + doNotShowAgainToday.getText());
+			closeAnnouncementBtn.click();
+		}
+
+		WebElement liveCasino = driver.findElement(By.xpath("//a[contains(text(),'真人')]"));
+		WebElement slots = driver.findElement(By.xpath("//a[contains(text(),'电子')]"));
+		WebElement fish = driver.findElement(By.xpath("//a[contains(text(),'捕鱼')]"));
+		WebElement sports = driver.findElement(By.xpath("//a[contains(text(),'体育 mm')]"));
+		WebElement poker = driver.findElement(By.xpath("//a[contains(text(),'棋牌 B')]"));
+		WebElement lottery = driver.findElement(By.xpath("//a[contains(text(),'彩票')]"));
+		WebElement eSports = driver.findElement(By.xpath("//a[contains(text(),'电竞')]"));
+
+		if (liveCasino.getText().contains("真人")) {
+			System.out.println(liveCasino.getText());
+		} else {
+			System.out.println("Error at " + liveCasino.getText());
+		}
+
+		if (slots.getText().contains("电子")) {
+			System.out.println(slots.getText());
+		} else {
+			System.out.println("Error at " + slots.getText());
+		}
+
+		if (fish.getText().contains("捕鱼")) {
+			System.out.println(fish.getText());
+		} else {
+			System.out.println("Error at " + fish.getText());
+		}
+
+		if (sports.getText().contains("体育")) {
+			System.out.println(sports.getText());
+		} else {
+			System.out.println("Error at " + sports.getText());
+		}
+
+		if (poker.getText().contains("棋牌")) {
+			System.out.println(poker.getText());
+		} else {
+			System.out.println("Error at " + poker.getText());
+		}
+
+		if (lottery.getText().contains("彩票")) {
+			System.out.println(lottery.getText());
+		} else {
+			System.out.println("Error at " + lottery.getText());
+		}
+
+		if (eSports.getText().contains("电竞")) {
+			System.out.println(eSports.getText());
+		} else {
+			System.out.println("Error at " + eSports.getText());
+		}
+
+		WebElement loginBtn = driver.findElement(By.className("login"));
+		loginBtn.click();
+
+		WebElement usernameField = driver.findElement(By.id("username"));
+		WebElement passwordField = driver.findElement(By.id("password"));
+		WebElement eyeIcon = driver.findElement(By.xpath("(//div[@class='ico ico-eye_close'])[1]"));
+		WebElement stayLoggedIn = driver.findElement(By.xpath("//span[contains(text(),'保持登录')]"));
+		WebElement stayLoggedInRadioBtn = driver.findElement(By.xpath("(//*[name()='svg'])[3]"));
+		WebElement submitLoginBtn = driver.findElement(By.id("login_popup_btn"));
+
+		Thread.sleep(1000);
+		usernameField.clear();
+		usernameField.sendKeys(wrongUsername);
+		passwordField.sendKeys(password);
+		eyeIcon.click();
+		submitLoginBtn.click();
+
+		WebElement wrongUserError = driver.findElement(By.xpath("//div[@class='error_msg error_login_username']"));
+
+		Thread.sleep(1000);
+		if (wrongUserError.getText().equals("会员帐号不存在或输入错误，请重新输入")) {
+			assertTrue("会员帐号不存在或输入错误，请重新输入", true);
+			System.out.println("Error message = " + wrongUserError.getText());
+		}
+
+		Thread.sleep(1000);
+		usernameField.clear();
+		usernameField.sendKeys(username);
+		passwordField.clear();
+		passwordField.sendKeys(wrongPassword);
+		eyeIcon.click();
+		submitLoginBtn.click();
+		
+		WebElement wrongPasswordError = driver.findElement(By.xpath("//div[@class='error_msg error_login_password']"));
+		
+		// i do not understand why the getText returns empty in console
+		System.out.println(wrongPasswordError.getText());
+
+		passwordField.clear();
+		passwordField.sendKeys(password);
+		eyeIcon.click();
+
+		Thread.sleep(1500);
+		if (stayLoggedIn.getText().equals("保持登录")) {
+			stayLoggedInRadioBtn.click();
+		} else {
+			System.out.println("Error at " + stayLoggedIn.getText());
+		}
+
+		submitLoginBtn.click();
+
+		Thread.sleep(3000);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J035_SeleniumStartDriver
+package java_Basics_Selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class J035_SeleniumStartDriver {
+
+	static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.youtube.com/");
+
+		WebElement exploreBtn = driver.findElement(By.xpath("(//yt-icon[@id='icon'])[2]"));
+		exploreBtn.click();
+		
+		Thread.sleep(2000);
+		
+		WebElement textTrending = driver.findElement(By.xpath("(//yt-formatted-string[@id='destination-label'])[1]"));
+		String text = textTrending.getText();
+		if (text.equalsIgnoreCase("Trending")) {
+			System.out.println("Pass");
+		} else {
+			System.out.println("Fail");
+		}
+
+		Thread.sleep(2000);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J036_SeleniumWait
+package java_Basics_Selenium;
+
+import java.io.IOException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class J036_SeleniumWait {
+
+	public static WebDriver driver;
+	public static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+
+	public static void main(String[] args) throws InterruptedException, IOException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Wait actions = new Wait();
+		actions.StartBrowser();
+		actions.dynamicLoading();
+		actions.loadingTest();
+		actions.closeBrowser();
+	}
+
+	public void StartBrowser() throws InterruptedException {
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("https://the-internet.herokuapp.com/");
+		Thread.sleep(1500);
+	}
+
+	public void dynamicLoading() throws InterruptedException {
+		WebElement dynamicLoad = driver.findElement(By.xpath("//a[normalize-space()='Dynamic Loading']"));
+		dynamicLoad.click();
+		WebElement dynamicLoadEx1 = driver.findElement(By.xpath("//a[normalize-space()='Example 1: Element on page that is hidden']"));
+		dynamicLoadEx1.click();
+	}
+	
+	public void loadingTest() throws InterruptedException {
+		WebElement startBtn = driver.findElement(By.tagName("button"));
+		startBtn.click();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement resultText = driver.findElement(By.xpath("//h4[normalize-space()='Hello World!']"));
+		wait.until(ExpectedConditions.visibilityOf(resultText));
+		System.out.println(resultText.getText());
+	}
+	
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(1500);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## J037_SeleniumWindowHandle
+package java_Basics_Selenium;
+
+import java.io.IOException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class J037_SeleniumWindowHandle {
+
+	public static WebDriver driver;
+	public static String chromeDriverPath = "D:\\Eclipse WorkSpace\\0001_Maven_Project\\Driver\\chromedriver.exe";
+	
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		driver = new ChromeDriver();
+		Point browserPosition = driver.manage().window().getPosition();
+		driver.manage().window().setPosition(browserPosition.moveBy(1500, 0));
+		driver.manage().window().maximize();
+		driver.get("https://the-internet.herokuapp.com/windows");
+		
+		Thread.sleep(1000);
+		String parentWH = driver.getWindowHandle();
+		driver.findElement(By.xpath("//a[normalize-space()='Click Here']")).click();
+		Thread.sleep(1500);
+		Set<String> windowHandles = driver.getWindowHandles();
+		System.out.println(windowHandles.size());
+		
+		Iterator<String> iterate = windowHandles.iterator();
+		while(iterate.hasNext()) {
+			String winH = iterate.next();
+			driver.switchTo().window(winH);
+			System.out.println(winH);
+		}
+		
+		System.out.println(driver.findElement(By.xpath("//h3[normalize-space()='New Window']")).getText());
+		driver.close();
+		driver.switchTo().window(parentWH);
+		
+		driver.findElement(By.xpath("//a[normalize-space()='Click Here']")).click();
+		Thread.sleep(1500);
+		driver.quit();
+	}
+}
+
+Results :  
+Try it to find out yourself
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
