@@ -2807,3 +2807,15 @@ public class J062_Sikuli {
 }
 
 ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+## Run program in a remote webdriver
+
+	public void startDriverRemote(String siteUrl) throws InterruptedException, MalformedURLException {
+			DesiredCapabilities capab = DesiredCapabilities.chrome();
+			capab.setBrowserName("chrome");
+			capab.setPlatform(Platform.WINDOWS);
+			url = new URL("http://localhost:4444/wd/hub");
+			driver = new RemoteWebDriver(url, capab);
+			driver.manage().window().maximize();
+			driver.get(siteUrl);
+		}
